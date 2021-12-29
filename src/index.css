@@ -1,13 +1,46 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@font-face {
+  font-family: "Shabnam";
+  src: url("./assets/fonts/Shabnam.eot"), url("./assets/fonts/Shabnam.ttf"),
+    url("./assets/fonts/Shabnam.woff"), url("./assets/fonts/Shabnam.woff2");
+  font-weight: normal;
+  font-style: normal;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  direction: rtl;
+  background-color: #eef2f6;
+}
+body,
+button,
+input {
+  font-family: "Shabnam" !important;
+}
+
+.container {
+  max-width: 1700px;
+  margin: auto;
+  width: 92vw;
+}
+
+.swiper_next,
+.swiper_prev {
+  fill: white;
+  width: 20px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10000;
+  cursor: pointer;
+}
+
+.swiper_next {
+  right: 10px;
+}
+.swiper_prev {
+  left: 10px;
+}
+
+.Toastify__toast-body {
+  font-family: "Shabnam";
+  
 }
