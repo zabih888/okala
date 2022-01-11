@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 export const postAsyncRegister = createAsyncThunk(
   "users/postAsyncRegister",
@@ -23,10 +22,20 @@ const registerSlice = createSlice({
   initialState,
   extraReducers: {
     [postAsyncRegister.fulfilled]: (state, action) => {
-      return { ...state, success: true, loading: false, error: null };
+      return {
+        ...state,
+        success: true,
+        loading: false,
+        error: null,
+      };
     },
     [postAsyncRegister.pending]: (state, action) => {
-      return { ...state, success: false, loading: true, error: null };
+      return {
+        ...state,
+        success: false,
+        loading: true,
+        error: null,
+      };
     },
     [postAsyncRegister.rejected]: (state, action) => {
       return {

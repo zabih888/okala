@@ -14,13 +14,15 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { MdPersonOutline } from "react-icons/md";
+import { useAuth } from "../../features/users/authSlice";
 
 const HeaderFrist = () => {
   const matchesLarge = useMediaQuery("(min-width:1024px)");
   const [activeInput, setActiveInput] = useState(false);
   const { cart } = useSelector((state) => state.cart);
+  const auth = useAuth();
   return (
-    <Wrapper >
+    <Wrapper>
       <Main className="container">
         <Flex>
           <Link to="/">
@@ -41,15 +43,20 @@ const HeaderFrist = () => {
           </Flex>
         ) : null}
         <Flex>
-          <Login>
-            {matchesLarge ? (
-              <Link to="/signUp">ورود / ثبت نام</Link>
-            ) : (
-              <Link to="/signUp">
-                <MdPersonOutline className="icon" />
-              </Link>
-            )}
-          </Login>
+          {auth ? (
+            <Link to="/profile">پروفایل</Link>
+          ) : (
+            <Login>
+              {matchesLarge ? (
+                <Link to="/signUp">ورود / ثبت نام</Link>
+              ) : (
+                <Link to="/signUp">
+                  <MdPersonOutline className="icon" />
+                </Link>
+              )}
+            </Login>
+          )}
+
           <Cart>
             <Link to="/cart">
               <RiShoppingCartLine className="icon" />

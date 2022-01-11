@@ -13,26 +13,32 @@ import Signup from "./components/Login_Signup/Signup";
 import { css, ThemeProvider } from "@emotion/react";
 import theme from "./components/Theme";
 import Footer from "./components/Footer";
+import AuthProvider from "./features/users/authSlice";
 
 function App() {
   return (
-    <Provider store={store}>
-      <BrowserRouter>
-        <Globals />
-        <ThemeProvider theme={theme}>
-          <Header />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/cart" element={<Cart />} />
+    <AuthProvider>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Globals />
+          <ThemeProvider theme={theme}>
+            <Header />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/cart" element={<Cart />} />
 
-            <Route path="/login" element={<Login />} />
-            <Route path="/signUp" element={<Signup />} />
-          </Routes>
-          <Footer />
-          <ToastContainer rtl toastClassName={css({ fontFamily: "Shabnam" })} />
-        </ThemeProvider>
-      </BrowserRouter>
-    </Provider>
+              <Route path="/login" element={<Login />} />
+              <Route path="/signUp" element={<Signup />} />
+            </Routes>
+            {/* <Footer /> */}
+            <ToastContainer
+              rtl
+              toastClassName={css({ fontFamily: "Shabnam" })}
+            />
+          </ThemeProvider>
+        </BrowserRouter>
+      </Provider>
+    </AuthProvider>
   );
 }
 

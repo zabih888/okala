@@ -3,11 +3,9 @@ import styled from "styled-components";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import {
-  Alert,
   Button,
   CircularProgress,
   FormControl,
-  FormLabel,
   IconButton,
   Input,
   InputAdornment,
@@ -23,7 +21,13 @@ import { showSuccessToast } from "../../utils/tools.js";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
+import { useAuth, useAuthActions } from "../../features/users/authSlice";
+import { useEffect } from "react";
+
 const Signup = () => {
+  const setAuth = useAuthActions();
+  const auth = useAuth();
+
   const { success, loading, error } = useSelector((state) => state.register);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -31,10 +35,10 @@ const Signup = () => {
 
   const formik = useFormik({
     initialValues: {
-      name: "",
-      email: "",
-      phoneNumber: "",
-      password: "",
+      email: "zabihnezami888@gmail.com",
+      password: "nokia7plus",
+      name: "zabihk8",
+      phoneNumber: "09926849590",
     },
     validationSchema: Yup.object({
       name: Yup.string().required("نام کاربری الزامی است"),
@@ -46,12 +50,19 @@ const Signup = () => {
     }),
     onSubmit: (values) => {
       submitForm(values);
+      setAuth(values);
     },
   });
 
   const submitForm = (values) => {
     dispatch(postAsyncRegister(values));
   };
+
+  useEffect(() => {
+    if(auth){
+      navigate("/")
+    }
+  },[])
 
   return (
     <Wrap>
